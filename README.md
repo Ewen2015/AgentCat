@@ -2,7 +2,7 @@
 
 We are in a new era.
 
-It is not about AI, not software, not anything else... but about a new technology to help human beings better understand human beings, and largely improving efficiency and experience as a consequence. 
+It is not about AI, not about software, not about anything else... but about a new technology to help human beings better understand human beings, and largely improving efficiency and experience as a consequence. 
 
 ## Intelligence empowered by intelligence
 
