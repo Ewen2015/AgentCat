@@ -8,6 +8,7 @@ interface AgentSidebarProps {
 }
 
 const AgentSidebar: React.FC<AgentSidebarProps> = ({ pageContent }) => {
+  console.log('SideMate AI Agent: AgentSidebar component rendering with pageContent length:', pageContent.length);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,7 @@ const AgentSidebar: React.FC<AgentSidebarProps> = ({ pageContent }) => {
   useEffect(() => {
     // Only set initial greeting if chat is empty
     if (messages.length === 0) {
+      console.log('SideMate AI Agent: Setting initial greeting message');
       setMessages([
         {
           id: 'init',
@@ -48,6 +50,7 @@ const AgentSidebar: React.FC<AgentSidebarProps> = ({ pageContent }) => {
   };
 
   const executeTask = async (taskDescription: string, isAuto: boolean = false) => {
+    console.log('SideMate AI Agent: Executing task:', taskDescription, 'isAuto:', isAuto);
     if (isLoading) return;
     setIsLoading(true);
 
@@ -81,6 +84,7 @@ const AgentSidebar: React.FC<AgentSidebarProps> = ({ pageContent }) => {
             response = await GeminiService.executeAgentTask(pageContent, taskDescription);
         }
         
+        console.log('SideMate AI Agent: Task execution successful, response:', response);
         // Remove thinking, add real response
         setMessages(prev => prev.filter(m => m.id !== thinkingId).concat({
             id: Date.now().toString(),
@@ -91,6 +95,7 @@ const AgentSidebar: React.FC<AgentSidebarProps> = ({ pageContent }) => {
         }));
 
     } catch (error) {
+        console.error('SideMate AI Agent: Error executing task:', error);
         setMessages(prev => prev.filter(m => m.id !== thinkingId).concat({
             id: Date.now().toString(),
             role: MessageRole.AGENT,

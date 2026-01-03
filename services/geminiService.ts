@@ -9,6 +9,7 @@ const MODEL_NAME = 'gemini-3-flash-preview';
  * Analyzes the current page context and discovers potential tasks.
  */
 export const discoverPageTasks = async (pageContent: string): Promise<string[]> => {
+  console.log('SideMate AI Agent: Discovering page tasks for content length:', pageContent.length);
   try {
     const prompt = `
       You are an intelligent browser assistant. 
@@ -20,6 +21,7 @@ export const discoverPageTasks = async (pageContent: string): Promise<string[]> 
       ${pageContent.substring(0, 10000)}
     `;
 
+    console.log('SideMate AI Agent: Sending discover tasks prompt to Gemini');
     const response = await ai.models.generateContent({
       model: MODEL_NAME,
       contents: prompt,
@@ -33,11 +35,12 @@ export const discoverPageTasks = async (pageContent: string): Promise<string[]> 
     });
 
     const text = response.text;
+    console.log('SideMate AI Agent: Received discover tasks response:', text);
     if (!text) return ["Summarize this page", "Find key information", "Extract links"];
     
     return JSON.parse(text) as string[];
   } catch (error) {
-    console.error("Error discovering tasks:", error);
+    console.error("SideMate AI Agent: Error discovering tasks:", error);
     return ["Summarize page", "Analyze sentiment", "List main topics"];
   }
 };
@@ -49,6 +52,7 @@ export const executeAgentTask = async (
   pageContent: string, 
   userTask: string
 ): Promise<AgentResponse> => {
+  console.log('SideMate AI Agent: Executing agent task:', userTask, 'with page content length:', pageContent.length);
   try {
     const prompt = `
       You are a browser automation agent. 
@@ -65,6 +69,7 @@ export const executeAgentTask = async (
       2. 'actions': A list of simulated steps you took (e.g., "Scrolled to section X", "Extracted price", "Clicked button").
     `;
 
+    console.log('SideMate AI Agent: Sending execute task prompt to Gemini');
     const response = await ai.models.generateContent({
       model: MODEL_NAME,
       contents: prompt,
@@ -85,12 +90,15 @@ export const executeAgentTask = async (
     });
 
     const text = response.text;
+    console.log('SideMate AI Agent: Received execute task response:', text);
     if (!text) throw new Error("No response from AI");
 
-    return JSON.parse(text) as AgentResponse;
+    const result = JSON.parse(text) as AgentResponse;
+    console.log('SideMate AI Agent: Parsed response:', result);
+    return result;
 
   } catch (error) {
-    console.error("Agent execution error:", error);
+    console.error("SideMate AI Agent: Agent execution error:", error);
     return {
       message: "I encountered an error trying to process that task. Please try again.",
       actions: ["Error: Failed to process request"]

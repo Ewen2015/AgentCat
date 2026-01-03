@@ -9,13 +9,19 @@ export interface MockBrowserHandle {
 }
 
 const MockBrowser = forwardRef<MockBrowserHandle, MockBrowserProps>(({ className }, ref) => {
+  console.log('SideMate AI Agent: MockBrowser component rendering');
   const contentRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => ({
     getPageContent: () => {
-      if (!contentRef.current) return "";
+      if (!contentRef.current) {
+        console.warn('SideMate AI Agent: MockBrowser contentRef is null');
+        return "";
+      }
       // Return innerText to simulate reading the page content
-      return contentRef.current.innerText;
+      const content = contentRef.current.innerText;
+      console.log('SideMate AI Agent: MockBrowser getPageContent called, returning content length:', content.length);
+      return content;
     }
   }));
 

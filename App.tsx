@@ -3,6 +3,7 @@ import MockBrowser, { MockBrowserHandle } from './components/MockBrowser';
 import AgentSidebar from './components/AgentSidebar';
 
 function App() {
+  console.log('SideMate AI Agent: App component rendering');
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const browserRef = useRef<MockBrowserHandle>(null);
   const [pageContent, setPageContent] = useState('');
@@ -14,7 +15,11 @@ function App() {
   // Sync content when opening
   useEffect(() => {
     if (isSidebarOpen && browserRef.current) {
-      setPageContent(browserRef.current.getPageContent());
+      const content = browserRef.current.getPageContent();
+      console.log('SideMate AI Agent: Sidebar opened, getting page content:', content.substring(0, 100) + '...');
+      setPageContent(content);
+    } else if (!isSidebarOpen) {
+      console.log('SideMate AI Agent: Sidebar closed');
     }
   }, [isSidebarOpen]);
 
@@ -111,7 +116,11 @@ function App() {
              <div className="relative group">
                  {/* This is the Chrome Extension Icon Button */}
                  <button 
-                    onClick={() => setSidebarOpen(!isSidebarOpen)}
+                    onClick={() => {
+                      const newState = !isSidebarOpen;
+                      console.log('SideMate AI Agent: Extension button clicked, toggling sidebar to:', newState);
+                      setSidebarOpen(newState);
+                    }}
                     className={`p-2 rounded-full transition-all duration-200 ${isSidebarOpen ? 'bg-indigo-100 text-indigo-600 ring-2 ring-indigo-200' : 'hover:bg-gray-100 text-gray-600 grayscale hover:grayscale-0'}`}
                     title="Open SideMate Assistant"
                  >
