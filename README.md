@@ -1,13 +1,20 @@
-# AgentCat
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-We are in a new era.
+# Run and deploy your AI Studio app
 
-It is not about AI, not about software, not about anything else... but about a new technology to help human beings better understand human beings, and largely improving efficiency and experience as a consequence. 
+This contains everything you need to run your app locally.
 
-## Intelligence empowered by intelligence
+View your app in AI Studio: https://ai.studio/apps/drive/1H85cA6IJRa7nEDdqkSpxt0r3L4biV4Uk
 
-A good intention people have about the artificial intelligence is that the AI can do some boring tasks and give them more time to do more meaningful and interesting tasks. It is only partly true. The power of AI is already illustrated but happens unevenly. 
+## Run Locally
 
-The AI can be used in 3 levels: 1) cheap labor automation, 2) systematic intelligence products, 3) highly personal strategic assistants. 
+**Prerequisites:**  Node.js
 
-The case 1 will results in boring jobs disappear and massive low value white-collar unemployed. The case 2 will results in many existing products being replaced by AI-powered products, such as search engines, recommendation systems, content creation tools, etc. The case 3 is the most interesting one, which is about building highly personal strategic assistants that can help individuals make better decisions, plan their lives, and achieve their goals -- gaining more power in the social world.
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

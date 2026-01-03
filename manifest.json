@@ -1,10 +1,29 @@
 {
-  "name": "Agent Cat",
-  "description": "Base Level Extension",
-  "version": "1.0",
   "manifest_version": 3,
+  "name": "SideMate AI Agent",
+  "version": "1.0.0",
+  "description": "AI Agent side panel to analyze pages and automate tasks autonomously.",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "sidePanel",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "side_panel": {
+    "default_path": "index.html"
+  },
   "action": {
-    "default_popup": "main.html",
-    "default_icon": "cat.png"
+    "default_title": "Open SideMate AI"
+  },
+  "background": {
+    "service_worker": "background.js"
   }
 }
