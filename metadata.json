@@ -1,5 +1,0 @@
-{
-  "name": "SideMate AI Agent",
-  "description": "A Chrome Extension-style AI sidebar agent that analyzes page content, discovers tasks, and executes user commands.",
-  "requestFramePermissions": []
-}

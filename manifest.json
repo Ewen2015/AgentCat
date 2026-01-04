@@ -16,9 +16,18 @@
     "default_path": "index.html"
   },
   "action": {
-    "default_title": "Open SideMate AI"
+    "default_title": "Open SideMate AI",
+    "default_icon": "cat.png"
   },
   "background": {
     "service_worker": "background.js"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ]
 }
